@@ -7,20 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		076D41F02916A36000417102 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076D41EF2916A36000417102 /* Date+ext.swift */; };
 		07D4F2972913555700B8FBBD /* SwiftCalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F2962913555700B8FBBD /* SwiftCalApp.swift */; };
 		07D4F2992913555700B8FBBD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F2982913555700B8FBBD /* Persistence.swift */; };
 		07D4F29C2913555700B8FBBD /* SwiftCal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F29A2913555700B8FBBD /* SwiftCal.xcdatamodeld */; };
-		07D4F29E2913555700B8FBBD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F29D2913555700B8FBBD /* ContentView.swift */; };
+		07D4F29E2913555700B8FBBD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F29D2913555700B8FBBD /* CalendarView.swift */; };
 		07D4F2A02913555800B8FBBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D4F29F2913555800B8FBBD /* Assets.xcassets */; };
 		07D4F2A42913555800B8FBBD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D4F2A32913555800B8FBBD /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		076D41EF2916A36000417102 /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
 		07D4F2932913555700B8FBBD /* SwiftCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D4F2962913555700B8FBBD /* SwiftCalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalApp.swift; sourceTree = "<group>"; };
 		07D4F2982913555700B8FBBD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		07D4F29B2913555700B8FBBD /* SwiftCal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftCal.xcdatamodel; sourceTree = "<group>"; };
-		07D4F29D2913555700B8FBBD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		07D4F29D2913555700B8FBBD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		07D4F29F2913555800B8FBBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07D4F2A12913555800B8FBBD /* SwiftCal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftCal.entitlements; sourceTree = "<group>"; };
 		07D4F2A32913555800B8FBBD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -58,11 +60,12 @@
 			children = (
 				07D4F2962913555700B8FBBD /* SwiftCalApp.swift */,
 				07D4F2982913555700B8FBBD /* Persistence.swift */,
-				07D4F29D2913555700B8FBBD /* ContentView.swift */,
+				07D4F29D2913555700B8FBBD /* CalendarView.swift */,
 				07D4F29F2913555800B8FBBD /* Assets.xcassets */,
 				07D4F2A12913555800B8FBBD /* SwiftCal.entitlements */,
 				07D4F29A2913555700B8FBBD /* SwiftCal.xcdatamodeld */,
 				07D4F2A22913555800B8FBBD /* Preview Content */,
+				076D41EF2916A36000417102 /* Date+ext.swift */,
 			);
 			path = SwiftCal;
 			sourceTree = "<group>";
@@ -147,8 +150,9 @@
 			files = (
 				07D4F2972913555700B8FBBD /* SwiftCalApp.swift in Sources */,
 				07D4F2992913555700B8FBBD /* Persistence.swift in Sources */,
-				07D4F29E2913555700B8FBBD /* ContentView.swift in Sources */,
+				07D4F29E2913555700B8FBBD /* CalendarView.swift in Sources */,
 				07D4F29C2913555700B8FBBD /* SwiftCal.xcdatamodeld in Sources */,
+				076D41F02916A36000417102 /* Date+ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		074EF893291C2A56002DCB55 /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074EF892291C2A56002DCB55 /* StreakView.swift */; };
 		076D41F02916A36000417102 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076D41EF2916A36000417102 /* Date+ext.swift */; };
 		07D4F2972913555700B8FBBD /* SwiftCalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F2962913555700B8FBBD /* SwiftCalApp.swift */; };
 		07D4F2992913555700B8FBBD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F2982913555700B8FBBD /* Persistence.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		074EF892291C2A56002DCB55 /* StreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakView.swift; sourceTree = "<group>"; };
 		076D41EF2916A36000417102 /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
 		07D4F2932913555700B8FBBD /* SwiftCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D4F2962913555700B8FBBD /* SwiftCalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalApp.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				07D4F29A2913555700B8FBBD /* SwiftCal.xcdatamodeld */,
 				07D4F2A22913555800B8FBBD /* Preview Content */,
 				076D41EF2916A36000417102 /* Date+ext.swift */,
+				074EF892291C2A56002DCB55 /* StreakView.swift */,
 			);
 			path = SwiftCal;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074EF893291C2A56002DCB55 /* StreakView.swift in Sources */,
 				07D4F2972913555700B8FBBD /* SwiftCalApp.swift in Sources */,
 				07D4F2992913555700B8FBBD /* Persistence.swift in Sources */,
 				07D4F29E2913555700B8FBBD /* CalendarView.swift in Sources */,

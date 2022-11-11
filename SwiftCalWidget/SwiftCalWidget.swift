@@ -40,9 +40,40 @@ struct SimpleEntry: TimelineEntry {
 
 struct SwiftCalWidgetEntryView : View {
     var entry: Provider.Entry
+    let columns = Array(repeating: GridItem(.flexible()), count: 7)
 
     var body: some View {
-        Text(entry.date, style: .time)
+        HStack {
+            VStack {
+                Text("30")
+                    .font(.system(size: 70, design: .rounded))
+                    .bold()
+                    .foregroundColor(.orange)
+                Text("day streak")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            VStack {
+                CalendarHeaderView(font: .caption)
+                LazyVGrid(columns: columns, spacing: 7) {
+                    ForEach(0..<31) { _ in
+                        Text("30")
+                            .font(.caption2)
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.secondary)
+                            .background(
+                                Circle()
+                                    .foregroundColor(.orange.opacity(0.3))
+                                    .scaleEffect(1.5)
+                            )
+                    }
+                }
+            }
+            padding(.leading)
+        }
+        .padding()
     }
 }
 
@@ -55,12 +86,13 @@ struct SwiftCalWidget: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
+        .supportedFamilies([.systemMedium])
     }
 }
 
 struct SwiftCalWidget_Previews: PreviewProvider {
     static var previews: some View {
         SwiftCalWidgetEntryView(entry: SimpleEntry(date: Date()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

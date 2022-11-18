@@ -60,33 +60,37 @@ struct SwiftCalWidgetEntryView : View {
     
     var body: some View {
         HStack {
-            VStack {
-                Text("\(calculateStreakValue())")
-                    .font(.system(size: 70, design: .rounded))
-                    .bold()
-                    .foregroundColor(.orange)
-                Text("day streak")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+            Link(destination: URL(string: "streak")!) {
+                VStack {
+                    Text("\(calculateStreakValue())")
+                        .font(.system(size: 70, design: .rounded))
+                        .bold()
+                        .foregroundColor(.orange)
+                    Text("day streak")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
             
-            VStack {
-                CalendarHeaderView(font: .caption)
-                LazyVGrid(columns: columns, spacing: 7) {
-                    ForEach(entry.days) { day in
-                        if day.date!.monthInt != Date().monthInt {
-                            Text(" ")
-                        } else {
-                            Text(day.date!.formatted(.dateTime.day()))
-                                .font(.caption2)
-                                .bold()
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor(day.didStudy ? .orange : .secondary)
-                                .background(
-                                    Circle()
-                                        .foregroundColor(.orange.opacity(day.didStudy ? 0.3 : 0.0))
-                                        .scaleEffect(1.5)
-                                )
+            Link(destination: URL(string: "calendar")!) {
+                VStack {
+                    CalendarHeaderView(font: .caption)
+                    LazyVGrid(columns: columns, spacing: 7) {
+                        ForEach(entry.days) { day in
+                            if day.date!.monthInt != Date().monthInt {
+                                Text(" ")
+                            } else {
+                                Text(day.date!.formatted(.dateTime.day()))
+                                    .font(.caption2)
+                                    .bold()
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundColor(day.didStudy ? .orange : .secondary)
+                                    .background(
+                                        Circle()
+                                            .foregroundColor(.orange.opacity(day.didStudy ? 0.3 : 0.0))
+                                            .scaleEffect(1.5)
+                                    )
+                            }
                         }
                     }
                 }

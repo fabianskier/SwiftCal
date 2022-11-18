@@ -11,6 +11,9 @@
 		076D41F02916A36000417102 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076D41EF2916A36000417102 /* Date+ext.swift */; };
 		07792E3C29271F3D00FE4A63 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07792E3B29271F3D00FE4A63 /* CalendarHeaderView.swift */; };
 		07792E3D29271F3D00FE4A63 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07792E3B29271F3D00FE4A63 /* CalendarHeaderView.swift */; };
+		07792E3E2927237C00FE4A63 /* SwiftCal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F29A2913555700B8FBBD /* SwiftCal.xcdatamodeld */; };
+		07792E3F2927238200FE4A63 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4F2982913555700B8FBBD /* Persistence.swift */; };
+		07792E40292724DA00FE4A63 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076D41EF2916A36000417102 /* Date+ext.swift */; };
 		07BD8A8F2927167A00290A33 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD8A8E2927167A00290A33 /* WidgetKit.framework */; };
 		07BD8A912927167A00290A33 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD8A902927167A00290A33 /* SwiftUI.framework */; };
 		07BD8A942927167A00290A33 /* SwiftCalWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BD8A932927167A00290A33 /* SwiftCalWidgetBundle.swift */; };
@@ -259,7 +262,10 @@
 			files = (
 				07BD8A962927167A00290A33 /* SwiftCalWidget.swift in Sources */,
 				07792E3D29271F3D00FE4A63 /* CalendarHeaderView.swift in Sources */,
+				07792E3E2927237C00FE4A63 /* SwiftCal.xcdatamodeld in Sources */,
+				07792E40292724DA00FE4A63 /* Date+ext.swift in Sources */,
 				07BD8A942927167A00290A33 /* SwiftCalWidgetBundle.swift in Sources */,
+				07792E3F2927238200FE4A63 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

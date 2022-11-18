@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import WidgetKit
 
 struct CalendarView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -25,7 +26,7 @@ struct CalendarView: View {
 
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(days) { day in
-                        if day.date?.monthInt != Date().monthInt {
+                        if day.date!.monthInt != Date().monthInt {
                             Text(" ")
                         } else {
                             Text(day.date!.formatted(.dateTime.day()))
@@ -39,6 +40,7 @@ struct CalendarView: View {
                                         
                                         do {
                                             try viewContext.save()
+                                            WidgetCenter.shared.reloadTimelines(ofKind: "SwiftCalWidget")
                                             print("👆 \(day.date!.dayInt) now studied.")
                                         } catch {
                                             print("Failed to save context.")

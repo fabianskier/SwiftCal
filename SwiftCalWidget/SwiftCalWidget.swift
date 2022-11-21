@@ -55,14 +55,88 @@ struct CalendarEntry: TimelineEntry {
 }
 
 struct SwiftCalWidgetEntryView : View {
+    @Environment(\.widgetFamily) var family
     var entry: CalendarEntry
+    
+    var body: some View {
+        switch family {
+        case .systemMedium:
+            MediumCalendarView(entry: entry, streakValue: calculateStreakValue())
+        case .accessoryCircular:
+            AccessoryCircularView(entry: entry)
+        case .accessoryRectangular:
+            AccessoryRectangularView(entry: entry)
+        case .accessoryInline:
+            Label("Streak - \(calculateStreakValue()) days", systemImage: "swift")
+                .widgetURL(URL(string: "streak"))
+        case .systemSmall, .systemLarge, .systemExtraLarge:
+            EmptyView()
+        @unknown default:
+            EmptyView()
+        }
+    }
+    
+    func calculateStreakValue() -> Int {
+        guard !entry.days.isEmpty else { return 0 }
+        
+        let nonFutureDays = entry.days.filter { $0.date!.dayInt <= Date().dayInt }
+        
+        var streakCount = 0
+        
+        for day in nonFutureDays.reversed() {
+            if day.didStudy {
+                streakCount += 1
+            } else {
+                if day.date!.dayInt != Date().dayInt {
+                    break
+                }
+            }
+        }
+        return streakCount
+    }
+}
+
+struct SwiftCalWidget: Widget {
+    let kind: String = "SwiftCalWidget"
+    
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            SwiftCalWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName("Swift Study Calendar")
+        .description("Track days you study Swift with streaks.")
+        .supportedFamilies([.systemMedium, .accessoryRectangular, .accessoryInline, .accessoryCircular])
+    }
+}
+
+struct SwiftCalWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        SwiftCalWidgetEntryView(entry: CalendarEntry(date: Date(), days: []))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        SwiftCalWidgetEntryView(entry: CalendarEntry(date: Date(), days: []))
+            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        SwiftCalWidgetEntryView(entry: CalendarEntry(date: Date(), days: []))
+            .previewContext(WidgetPreviewContext(family: .accessoryInline))
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        SwiftCalWidgetEntryView(entry: CalendarEntry(date: Date(), days: []))
+            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+}
+
+private struct MediumCalendarView: View {
+    var entry: CalendarEntry
+    var streakValue: Int
+    
     let columns = Array(repeating: GridItem(.flexible()), count: 7)
     
     var body: some View {
         HStack {
             Link(destination: URL(string: "streak")!) {
                 VStack {
-                    Text("\(calculateStreakValue())")
+                    Text("\(streakValue)")
                         .font(.system(size: 70, design: .rounded))
                         .bold()
                         .foregroundColor(.orange)
@@ -99,44 +173,53 @@ struct SwiftCalWidgetEntryView : View {
         }
         .padding()
     }
+}
+
+private struct AccessoryCircularView: View {
+    var entry: CalendarEntry
     
-    func calculateStreakValue() -> Int {
-        guard !entry.days.isEmpty else { return 0 }
-        
-        let nonFutureDays = entry.days.filter { $0.date!.dayInt <= Date().dayInt }
-        
-        var streakCount = 0
-        
-        for day in nonFutureDays.reversed() {
-            if day.didStudy {
-                streakCount += 1
-            } else {
-                if day.date!.dayInt != Date().dayInt {
-                    break
+    var currentCalendarDays: Int {
+        entry.days.filter { $0.date?.monthInt == Date().monthInt }.count
+    }
+    
+    var daysStudied: Int {
+        entry.days.filter { $0.date?.monthInt == Date().monthInt }.filter { $0.didStudy }.count
+    }
+    
+    var body: some View {
+        Gauge(value: Double(daysStudied), in: 1...Double(currentCalendarDays)) {
+            Image(systemName: "swift")
+        } currentValueLabel: {
+            Text("\(daysStudied)")
+        }
+        .gaugeStyle(.accessoryCircular)
+    }
+}
+
+private struct AccessoryRectangularView: View {
+    var entry: CalendarEntry
+    let columns = Array(repeating: GridItem(.flexible()), count: 7)
+    
+    var body: some View {
+        LazyVGrid(columns: columns, spacing: 4) {
+            ForEach(entry.days) { day in
+                if day.date!.monthInt != Date().monthInt {
+                    Text(" ")
+                        .font(.system(size: 7))
+                } else {
+                    if day.didStudy {
+                        Image(systemName: "swift")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 7, height: 7)
+                    } else {
+                        Text(day.date!.formatted(.dateTime.day()))
+                            .font(.system(size: 7))
+                            .frame(maxWidth: .infinity)
+                    }
                 }
             }
         }
-        return streakCount
-    }
-}
-
-struct SwiftCalWidget: Widget {
-    let kind: String = "SwiftCalWidget"
-    
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            SwiftCalWidgetEntryView(entry: entry)
-        }
-        .configurationDisplayName("Swift Study Calendar")
-        .description("Track days you study Swift with streaks.")
-        .supportedFamilies([.systemMedium])
-    }
-}
-
-struct SwiftCalWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        SwiftCalWidgetEntryView(entry: CalendarEntry(date: Date(), days: []))
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        .padding()
     }
 }
